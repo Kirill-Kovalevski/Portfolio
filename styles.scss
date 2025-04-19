@@ -16,6 +16,11 @@ li{
       "BLED" 0,
       "SCAN" 0;
 }
+.navBar{
+    display: flex;
+    margin: 2rem;
+    justify-content: space-around;
+}
 .masterContainerUp{
     display: flex;
     justify-content: space-between;
@@ -30,6 +35,7 @@ li{
     background-color: #D76C82;
     height: 400px;
     width: 400px;
+    border-radius: 15px;
 }
 .secondProject{
     background-color: #50212a;
