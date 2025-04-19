@@ -16,6 +16,46 @@ li{
       "BLED" 0,
       "SCAN" 0;
 }
+.masterContainerUp{
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem;
+}
+.masterContainerDown{
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem;
+}
+.firstProject{
+    background-color: #D76C82;
+    height: 400px;
+    width: 400px;
+}
+.secondProject{
+    background-color: #50212a;
+    height: 400px;
+    width: 400px;
+}
+.thirdProject{
+    background-color: #45bb16;
+    height: 400px;
+    width: 400px;
+}
+.fourthProject{
+    background-color: #ce0bc4;
+    height: 400px;
+    width: 400px;
+}
+.fifthProject{
+    background-color: #24060c;
+    height: 400px;
+    width: 400px;
+}
+.sixthProject{
+    background-color: #0db4ac;
+    height: 400px;
+    width: 400px;
+}
 footer{
     font-size: 0.7rem;
     font-family: "Doto", sans-serif;
