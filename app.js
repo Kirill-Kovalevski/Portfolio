@@ -12,7 +12,6 @@ if (burger && navMenu) {
     navMenu.classList.toggle('is-open', !open);
   });
 
-  // Close menu after clicking any nav link (including hash links)
   navMenu.querySelectorAll('a.navlink').forEach(a => {
     a.addEventListener('click', () => {
       burger.setAttribute('aria-expanded', 'false');
@@ -41,33 +40,6 @@ if (burger && navMenu) {
       ticking = true;
     }
   }, { passive: true });
-})();
-
-/* ========= One-at-a-time accordion (desktop & mobile) ========= */
-(function oneAtATimeAccordion() {
-  const toggles = Array.from(document.querySelectorAll('.tool__toggle'));
-  if (!toggles.length) return;
-
-  toggles.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.getAttribute('aria-controls');
-      const panel = document.getElementById(id);
-      const willOpen = btn.getAttribute('aria-expanded') !== 'true';
-
-      // Close all panels
-      toggles.forEach(b => {
-        const p = document.getElementById(b.getAttribute('aria-controls'));
-        b.setAttribute('aria-expanded', 'false');
-        if (p) p.hidden = true;
-      });
-
-      // Open selected if it was closed, otherwise all stay closed
-      if (willOpen && panel) {
-        btn.setAttribute('aria-expanded', 'true');
-        panel.hidden = false;
-      }
-    });
-  });
 })();
 
 /* ========= Per-card preview scale from data-scale ========= */

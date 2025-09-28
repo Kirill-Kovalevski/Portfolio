@@ -12,8 +12,7 @@ if (burger && navMenu) {
     var open = burger.getAttribute('aria-expanded') === 'true';
     burger.setAttribute('aria-expanded', String(!open));
     navMenu.classList.toggle('is-open', !open);
-  }); // Close menu after clicking any nav link (including hash links)
-
+  });
   navMenu.querySelectorAll('a.navlink').forEach(function (a) {
     a.addEventListener('click', function () {
       burger.setAttribute('aria-expanded', 'false');
@@ -45,31 +44,6 @@ if (burger && navMenu) {
     }
   }, {
     passive: true
-  });
-})();
-/* ========= One-at-a-time accordion (desktop & mobile) ========= */
-
-
-(function oneAtATimeAccordion() {
-  var toggles = Array.from(document.querySelectorAll('.tool__toggle'));
-  if (!toggles.length) return;
-  toggles.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var id = btn.getAttribute('aria-controls');
-      var panel = document.getElementById(id);
-      var willOpen = btn.getAttribute('aria-expanded') !== 'true'; // Close all panels
-
-      toggles.forEach(function (b) {
-        var p = document.getElementById(b.getAttribute('aria-controls'));
-        b.setAttribute('aria-expanded', 'false');
-        if (p) p.hidden = true;
-      }); // Open selected if it was closed, otherwise all stay closed
-
-      if (willOpen && panel) {
-        btn.setAttribute('aria-expanded', 'true');
-        panel.hidden = false;
-      }
-    });
   });
 })();
 /* ========= Per-card preview scale from data-scale ========= */
