@@ -408,3 +408,40 @@ img{ max-width:100%; display:block; }
 /* ============== Footer ============== */
 .footer{ border-top:1px solid rgba(15,23,42,.08); background:#fff; }
 .footer__inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding: 1rem 0; }
+/* === Card title: new animation (no underline) === */
+.card__title{
+  text-align:center;
+  position:relative;
+  transition: transform .22s ease, text-shadow .25s ease, letter-spacing .25s ease;
+}
+.card__title::after{ content:none !important; } /* disable previous underline */
+.card:hover .card__title{
+  transform: translateY(-2px);
+  letter-spacing:.2px;
+  /* subtle glow using each card's --accent */
+  text-shadow:
+    0 6px 18px rgba(2,6,23,.08),
+    0 0 18px var(--accent);
+}
+
+/* === Description left-aligned === */
+.card__text{
+  text-align:left !important;
+}
+
+/* === Keep chips centered (no change, just locking it in) === */
+.card__meta{
+  justify-content:center !important;
+}
+
+/* === Actions: push buttons to the far sides === */
+.card__actions{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;   /* left / right edges */
+  flex-wrap:nowrap;                /* avoid wrapping */
+  gap:.75rem;
+  margin-top:auto;                 /* stays at the bottom of the card */
+}
+.card__actions .btn{ flex:0 0 auto; } /* prevent stretching */
