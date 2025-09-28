@@ -720,3 +720,129 @@ img {
     opacity: 0;
   }
 }
+/* === Articles & Tools — two-column accordion (CSS only, no JS) === */
+.tools-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px 22px;
+  align-items: start;
+  max-width: 980px;
+  /* keeps the list compact */
+  margin-inline: auto;
+  /* centers the grid */
+}
+
+@media (min-width: 900px) {
+  .tools-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+/* details container */
+.tool {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+/* summary styled as rounded black tabs */
+.tool__summary {
+  list-style: none;
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  background: #111;
+  color: #fff;
+  font-weight: 900;
+  line-height: 1.2;
+  border: 2px solid #111;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.22);
+  cursor: pointer;
+  position: relative;
+}
+
+.tool__summary::-webkit-details-marker {
+  display: none;
+}
+
+/* chevron */
+.tool__summary::after {
+  content: "";
+  margin-left: auto;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+  opacity: 0.9;
+}
+
+.tool[open] .tool__summary::after {
+  transform: rotate(45deg);
+}
+
+/* open state: fuse edges with panel */
+.tool[open] .tool__summary {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* animated panel reveal */
+.tool__content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s ease;
+}
+
+.tool[open] .tool__content {
+  grid-template-rows: 1fr;
+}
+
+.tool__panel {
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-top: 0;
+  border-radius: 0 0 14px 14px;
+  padding: 0 1rem 1rem;
+  margin-top: -6px;
+  /* tuck under tab a bit */
+  box-shadow: var(--shadow);
+}
+
+/* content styles */
+.tool__panel .checklist {
+  padding-left: 1rem;
+  margin: 0.8rem 0 0.2rem;
+}
+
+.tool__panel li {
+  margin: 0.35rem 0;
+}
+
+.tool__panel pre {
+  background: #0f172a;
+  color: #e5e7eb;
+  padding: 0.75rem 0.9rem;
+  border-radius: 10px;
+  overflow: auto;
+  font-size: 0.85rem;
+  margin: 0.8rem 0;
+}
+
+.tool__panel code {
+  background: rgba(15, 23, 42, 0.06);
+  padding: 0.08rem 0.3rem;
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9em;
+}
+
+/* keyboard focus */
+.tool__summary:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}

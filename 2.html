@@ -148,166 +148,139 @@
 
   <!-- Articles -->
 <section id="articles" class="section section--tint">
-  <div class="container">
-    <div class="section__head">
-      <h2 class="section__title">Articles & Tools</h2>
-      <p class="section__sub section__sub--room">Short, practical ideas you can apply the same day.</p>
-    </div>
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title">Articles & Tools</h2>
+        <p class="section__sub section__sub--room">Short, practical ideas you can apply the same day.</p>
+      </div>
 
-    <!-- START: the grid; make sure Contact is NOT placed inside this div -->
-    <div class="tools-grid" id="tools">
-      <!-- 1) Git Rescue Kit -->
-      <details class="tool">
-        <summary class="tool__summary">Git Rescue Kit — fixes for the top 10 “oh no” moments</summary>
-        <div class="tool__content">
-          <div class="tool__panel">
-            <ul class="checklist">
-              <li>Undo last commit, keep changes: <code>git reset --soft HEAD~1</code></li>
-              <li>Fix message: <code>git commit --amend</code></li>
-              <li>Discard local edits: <code>git restore .</code></li>
-              <li>Restore from <code>origin/main</code>: <code>git restore -s origin/main path/to/file</code></li>
-              <li>Stash &amp; return: <code>git stash -u</code> → <code>git stash pop</code></li>
-              <li>Squash last N: <code>git reset --soft HEAD~N &amp;&amp; git commit -m "one"</code></li>
-              <li>Bring back a branch: <code>git reflog</code> → <code>git checkout -b branch SHA</code></li>
-              <li>Delete remote: <code>git push origin --delete branch</code></li>
-              <li>Align exactly: <code>git switch main</code> → <code>git reset --hard origin/main</code></li>
-              <li>Refresh default HEAD: <code>git remote set-head origin -a</code></li>
-            </ul>
-          </div>
-        </div>
-      </details>
-
-      <!-- 2) Debugging Playbook -->
-      <details class="tool">
-        <summary class="tool__summary">Debugging Without Tears: 7 Rituals That Actually Work</summary>
-        <div class="tool__content">
-          <div class="tool__panel">
+      <div class="tools" id="tools">
+        <!-- 1 -->
+        <article class="tool">
+          <button class="tool__toggle" aria-expanded="false" aria-controls="art1">
+            Debugging Without Tears: 7 Rituals That Actually Work
+          </button>
+          <div id="art1" class="tool__panel" hidden>
             <ol>
-              <li><strong>Reproduce</strong>: lock versions; write exact 3 steps.</li>
-              <li><strong>Reduce</strong>: minimal repro (20–50 LOC).</li>
-              <li><strong>Record</strong>: structured logs <code>{evt,id,t,payload}</code>.</li>
-              <li><strong>Reason</strong>: binary search with <code>git bisect</code>.</li>
-              <li><strong>Repair</strong>: add a test; prevent regressions.</li>
-              <li><strong>Review</strong>: one hypothesis per change.</li>
-              <li><strong>Reset</strong>: 10-minute walk if stuck.</li>
+              <li><strong>3-step repro</strong> (reproduce → reduce → record).</li>
+              <li><strong>Micro red/green</strong> tests around the bug; commit each green.</li>
+              <li><strong>Binary search</strong> the blame with <code>git bisect</code>.</li>
+              <li><strong>Contracted logs</strong>: shape events as <code>{evt,id,t,payload}</code>.</li>
+              <li><strong>One hypothesis</strong> per change; write it above the diff.</li>
+              <li><strong>Layer proof</strong>: UI → API → DB, one command each.</li>
+              <li><strong>Five-minute duck</strong>, then a 10-minute reset if stuck.</li>
             </ol>
-            <pre><code>// Chrome helpers
-debugger;
-console.table(rows);
-console.time('t'); /* ... */ console.timeEnd('t');</code></pre>
           </div>
-        </div>
-      </details>
+        </article>
 
-      <!-- 3) Web Performance -->
-      <details class="tool">
-        <summary class="tool__summary">10 Front-End Perf Levers in 10 Minutes</summary>
-        <div class="tool__content">
-          <div class="tool__panel">
+        <!-- 2 -->
+        <article class="tool">
+          <button class="tool__toggle" aria-expanded="false" aria-controls="art2">
+            10 Front-End Perf Levers in 10 Minutes
+          </button>
+          <div id="art2" class="tool__panel" hidden>
             <ul class="checklist">
-              <li>Lazy images: <code>&lt;img loading="lazy" decoding="async"&gt;</code></li>
-              <li>Prevent CLS: set <code>width/height</code> on media.</li>
-              <li>Defer JS: <code>&lt;script defer src="app.js"&gt;&lt;/script&gt;</code></li>
-              <li>Preload main font (woff2).</li>
-              <li><code>content-visibility:auto;</code> below the fold.</li>
-              <li>Ship AVIF/WebP via <code>srcset</code>.</li>
-              <li>Run Lighthouse → fix the top 3 red items.</li>
+              <li>Ship images as AVIF/WebP with <code>srcset</code>.</li>
+              <li>Inline 5–8KB of critical CSS; defer the rest.</li>
+              <li><code>preconnect</code> to fonts/APIs; <code>preload</code> the main font.</li>
+              <li>Prefer native (<code>dialog</code>, <code>URL</code>, <code>details</code>).</li>
+              <li><code>content-visibility:auto</code> below the fold.</li>
+              <li>Split by route; lazy non-critical chunks.</li>
+              <li>Cache immutables; add a simple service worker.</li>
+              <li>Track LCP/CLS/INP; fix outliers, not averages.</li>
+              <li>Stabilize props; memo hot paths.</li>
+              <li>&lt; 100KB JS at first paint—fight for it.</li>
             </ul>
           </div>
-        </div>
-      </details>
+        </article>
 
-      <!-- 4) Accessibility -->
-      <details class="tool">
-        <summary class="tool__summary">Accessibility Quick Wins</summary>
-        <div class="tool__content">
-          <div class="tool__panel">
-            <ul class="checklist">
-              <li>Keyboard focus: <code>:focus-visible { outline:2px solid #111; }</code></li>
-              <li>Icon buttons need text: <code>aria-label</code>.</li>
-              <li>Skip link at top: <code>&lt;a href="#main" class="skip"&gt;Skip to content&lt;/a&gt;</code></li>
-              <li>Meaningful <code>alt</code>; decorative <code>alt=""</code>.</li>
-              <li>Contrast ≥ 4.5:1; check DevTools → Accessibility.</li>
+        <!-- 3 -->
+        <article class="tool">
+          <button class="tool__toggle" aria-expanded="false" aria-controls="art3">
+            Designing Data for Humans: 9 Microcopy Patterns
+          </button>
+          <div id="art3" class="tool__panel" hidden>
+            <ol>
+              <li><strong>Show units</strong> in labels: “Limit (MB)”.</li>
+              <li><strong>State intent</strong> on buttons: “Create project” &gt; “Submit”.</li>
+              <li><strong>Blame the system</strong> in errors: “We couldn’t save…”.</li>
+              <li><strong>Preview consequences</strong>: “Invites 3 people • sends email”.</li>
+              <li><strong>Use thresholds</strong>: “≈ 2–3 min” beats “~120 sec”.</li>
+              <li><strong>Put math in words</strong>: “Totals exclude archived items”.</li>
+              <li><strong>Progressive disclosure</strong>: show “Advanced” last.</li>
+              <li><strong>Reassure</strong> near risky actions: “Undo for 30s”.</li>
+              <li><strong>Good defaults win</strong>: choose for the user when safe.</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="tool">
+          <button class="tool__toggle" aria-expanded="false" aria-controls="art4">
+            Contracts-First APIs: How to Stop Breaking Clients
+          </button>
+          <div id="art4" class="tool__panel" hidden>
+            <ul>
+              <li>Write an OpenAPI/JSON-Schema <em>before</em> code; generate stubs.</li>
+              <li>Add <strong>compat tests</strong>: yesterday’s contract must pass today.</li>
+              <li>Version by capability flags over URLs when possible.</li>
+              <li>Log <strong>schema drift</strong> in CI (fail on breaking changes).</li>
+              <li>Ship <strong>typed clients</strong>; devs copy/paste less, break less.</li>
             </ul>
           </div>
-        </div>
-      </details>
+        </article>
 
-      <!-- 5) TypeScript -->
-      <details class="tool">
-        <summary class="tool__summary">TypeScript Patterns that Save Hours</summary>
-        <div class="tool__content">
-          <div class="tool__panel">
-            <pre><code>// Narrowing helper
-export const isNonNull = &lt;T,>(v: T | null | undefined): v is T =&gt; v != null;
+        <!-- 5 -->
+        <article class="tool">
+          <button class="tool__toggle" aria-expanded="false" aria-controls="art5">
+            The Tuesday Pattern: Sustainable Refactoring
+          </button>
+          <div id="art5" class="tool__panel" hidden>
+            <p>Schedule refactors like workouts. Every Tuesday:</p>
+            <ol>
+              <li>Pick a <strong>30-minute slice</strong> (one file / module).</li>
+              <li>Write a <strong>safety net</strong> test first.</li>
+              <li>Refactor only what the test touches.</li>
+              <li>Open a tiny PR; keep a running “debt ledger”.</li>
+              <li>After 8 Tuesdays, review the ledger and celebrate deltas.</li>
+            </ol>
+          </div>
+        </article>
 
-// Result type
-type Result&lt;T,E=Error&gt; = { ok:true; value:T } | { ok:false; error:E };
-
-// Safe fetch
-async function getJSON&lt;T&gt;(u:string):Promise&lt;Result&lt;T&gt;&gt;{
-  try { return { ok:true, value: await (await fetch(u)).json() as T }; }
-  catch(e){ return { ok:false, error:e as Error }; }
-}</code></pre>
-            <ul class="checklist">
-              <li>Prefer <code>Result&lt;T&gt;</code> to throwing in app code.</li>
-              <li>Use <code>Pick</code>, <code>Partial</code>, <code>ReturnType</code>.</li>
-              <li>From JSON → TS: VS Code “Copy as TypeScript”.</li>
+        <!-- 6 -->
+        <article class="tool">
+          <button class="tool__toggle" aria-expanded="false" aria-controls="art6">
+            Senior in a Year: The 5-Hour Note
+          </button>
+          <div id="art6" class="tool__panel" hidden>
+            <p>Spend <strong>one focused hour per weekday</strong> making a durable note:</p>
+            <ul>
+              <li>One concept, one diagram, one code snippet.</li>
+              <li>Link it to two other notes (“backlinks”).</li>
+              <li>At month’s end, publish the best 3 as blog posts or gists.</li>
+              <li>Result: a compounding personal knowledge base & portfolio.</li>
             </ul>
           </div>
-        </div>
-      </details>
+        </article>
 
-      <!-- 6) Secrets & Env -->
-      <details class="tool">
-        <summary class="tool__summary">Secrets &amp; Env — stop leaking keys</summary>
-        <div class="tool__content">
-          <div class="tool__panel">
-            <pre><code># .gitignore
-.env
-
-# Vite example
-# .env
-VITE_API_URL=https://api.example.com
-
-// use in code
-const API = import.meta.env.VITE_API_URL;</code></pre>
-            <ul class="checklist">
-              <li>Never commit <code>.env</code>.</li>
-              <li>Use GitHub Repository secrets for CI.</li>
-              <li>On Pages, keep asset paths relative (no leading <code>/</code>).</li>
+        <!-- 7 -->
+        <article class="tool">
+          <button class="tool__toggle" aria-expanded="false" aria-controls="art7">
+            Build a Personal Dev&nbsp;OS: Systems &gt; Goals
+          </button>
+          <div id="art7" class="tool__panel" hidden>
+            <ul>
+              <li><strong>Daily system</strong>: 3 outcomes → 25-minute sprints → 5-minute log.</li>
+              <li><strong>Weekly system</strong>: demo something every Friday (even ugly).</li>
+              <li><strong>Hiring system</strong>: one new contact/day, one PR/week, one article/month.</li>
+              <li><strong>Health system</strong>: alarm to stop coding at 18:30; walk while thinking.</li>
+              <li>Systems reduce motivation debt—momentum replaces willpower.</li>
             </ul>
           </div>
-        </div>
-      </details>
-
-      <!-- 7) Ship to GitHub Pages -->
-      <details class="tool">
-        <summary class="tool__summary">Ship to GitHub Pages — paths, SPA refresh &amp; phone preview</summary>
-        <div class="tool__content">
-          <div class="tool__panel">
-            <ul class="checklist">
-              <li>Use relative assets: <code>href="dist/styles.css"</code> (not <code>"/dist/styles.css"</code>).</li>
-              <li>Project sites serve from repo root or <code>/docs</code>.</li>
-              <li>SPA refresh fix: copy <code>index.html</code> → <code>404.html</code>.</li>
-            </ul>
-            <pre><code>&lt;script&gt;(function(){
-  if(/github\.io$/.test(location.hostname)){
-    var seg=(location.pathname.split('/').filter(Boolean)[0]||'');
-    var el=document.createElement('base'); el.href='/' + (seg? seg + '/' : '');
-    document.head.appendChild(el);
-  }
-})();&lt;/script&gt;</code></pre>
-            <p>Phone preview: append <code>?phone</code> to iframe src and in the embedded app set viewport to <code>width=390</code> when <code>?phone</code> exists.</p>
-          </div>
-        </div>
-      </details>
+        </article>
+      </div>
     </div>
-    <!-- END: tools-grid -->
-  </div>
-</section>
-
-
+  </section>
 
   <!-- Contact -->
   <section id="contact" class="section">
@@ -337,7 +310,7 @@ const API = import.meta.env.VITE_API_URL;</code></pre>
   </div>
 </footer>
 
-
+<!-- FIX: relative path for GitHub Pages project -->
 <script src="app.js"></script>
 </body>
 </html>
